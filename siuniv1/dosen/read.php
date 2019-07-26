@@ -1,6 +1,7 @@
 <?php
+
 session_start();
-if (!(isset($_SESSION['user']))) {
+if (!(isset($_SESSION['username']))) {
   header("location: ../login/form-login.php");
 }
 
@@ -91,6 +92,17 @@ $num = mysqli_num_rows($result);
        margin: 20px 650px;
        border-radius: 7px;
      }
+     #tamd{
+       width: 70%;
+       outline: none;
+       padding: 10px 11px;
+       border: 1px #aaa solid;
+       font-size: 13px;
+       background: #fff;
+       display: block;
+       margin: 20px auto;
+       border-radius: 7px;
+     }
      #dm{
        width: 70%;
        outline: none;
@@ -166,6 +178,13 @@ $num = mysqli_num_rows($result);
          <form action= "../matakuliah/read.php" method="post">
            <input type="submit" name="datamatkul" value="Data Matakuliah" id="dm">
          </form>
+         <?php if ($_SESSION['level'] == "admin"){ ?>
+         <form action="../tambahuser.php" method="post">
+           <input type="submit" name="tambahuser" value="Tambah User" id="tamd">
+         </form>
+       <?php } else {
+         echo "";
+       } ?>
          <form action= "../Login/logout.php" method="post">
            <input type="submit" name="Logout" value="Logout" id="Logout">
          </form>
